@@ -9,12 +9,12 @@ OcsStorage::OcsStorage(OcsGraphics& ocsDesignIn)
 
 float OcsStorage::getTemp()
 {
-	return this->actualData.temperature;
+	return 0;//this->actualData.temperature;
 }
 
 float OcsStorage::getMinTemp()
 {
-	return this->minData.temperature;
+	return 0;//this->minData.temperature;
 }
 
 OcsStorage::message OcsStorage::getActualData()
@@ -24,7 +24,7 @@ OcsStorage::message OcsStorage::getActualData()
 
 void OcsStorage::Update(message income, uint8_t screenNum)
 {
-	if(screenNum == 1)
+	/*if(screenNum == 1)
 	{
 		if(this->isInitalize == false)
 		{
@@ -108,13 +108,13 @@ void OcsStorage::Update(message income, uint8_t screenNum)
 	else if(screenNum == 2)
 	{
 		this->isTransition = true;
-	}
+	}*/
 }
 
 // ToDo -10 value size is over the box
 void OcsStorage::checkTemperature(float temp)
 {
-	if(temp > -40 and temp < 80)
+	/*if(temp > -40 and temp < 80)
 	{
 		if(actualData.temperature != temp)
 		{
@@ -137,12 +137,12 @@ void OcsStorage::checkTemperature(float temp)
 	else
 	{
 		// ToDo error handling
-	}
+	}*/
 }
 
 void OcsStorage::checkPressure(float pressure)
 {
-	if(pressure > 30000 and pressure < 100000)
+	/*if(pressure > 30000 and pressure < 100000)
 	{
 		if(actualData.pressure != pressure)
 		{
@@ -165,12 +165,12 @@ void OcsStorage::checkPressure(float pressure)
 	else
 	{
 		// ToDo error handling
-	}
+	}*/
 }
 
 void OcsStorage::checkAltitude(float altitude)
 {
-	if(altitude > 0 and altitude < 5000)
+	/*if(altitude > 0 and altitude < 5000)
 	{
 		if(this->actualData.altitude != altitude)
 		{
@@ -181,12 +181,12 @@ void OcsStorage::checkAltitude(float altitude)
 	else
 	{
 		// ToDo error handling
-	}
+	}*/
 }
 
 void OcsStorage::checkHumidity(float humidity)
 {
-	if(humidity > 0 and humidity < 100)
+	/*if(humidity > 0 and humidity < 100)
 	{
 		if(this->actualData.humidity_bme280 != humidity)
 		{
@@ -197,6 +197,6 @@ void OcsStorage::checkHumidity(float humidity)
 	else
 	{
 		// ToDo error handling
-	}
+	}*/
 }
 
