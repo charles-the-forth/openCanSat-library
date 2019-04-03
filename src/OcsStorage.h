@@ -13,6 +13,19 @@ class OcsStorage
 	typedef struct
 	{
 	  uint16_t lightIntensity;
+		float temperatureCanSat;
+		float temperatureExternal;
+		float temperatureMPU;
+		float pressureCanSat;
+		float pressureExternal;
+		float humidityCanSat;
+		float humidityExternal;
+		float accelerationX;
+		float accelerationY;
+		float accelerationZ;
+		float rotationX;
+		float rotationY;
+		float rotationZ;
 	} message;
 
 	void Update(message income, uint8_t screenNum);
