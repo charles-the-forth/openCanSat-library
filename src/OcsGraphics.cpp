@@ -135,7 +135,8 @@ void OcsGraphics::drawSecondScreen()
 	drawRoundedFrame("ALTITUDE", 81, 12, 76, 30);
 	drawRoundedFrame("POWER", 3, 44, 76, 30);
 	drawRoundedFrame("LIGHT INTENSITY", 81, 44, 76, 30);
-	drawRoundedFrame("UV INDEX", 3, 76, 154, 30);
+	drawRoundedFrame("UV INDEX", 3, 76, 76, 30);
+	drawRoundedFrame("AIR QUALITY", 81, 76, 76, 30);
 }
 
 void OcsGraphics::drawThirdScreen()
