@@ -49,6 +49,8 @@ class OcsGraphics
 	void drawThirdScreen();
 
 	void drawFourthScreen();
+
+	void drawFifthScreen();
 };
 
 #endif /* _OCSGRAPHICS_HH */

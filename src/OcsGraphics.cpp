@@ -40,6 +40,10 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 		drawFourthScreen();
 		break;
 
+	case 5:
+		drawFifthScreen();
+		break;
+
 	default:
 		break;
 	}
@@ -156,6 +160,13 @@ void OcsGraphics::drawFourthScreen()
 	drawRoundedFrame("ACCELERATION X", 81, 44, 76, 30);
 	drawRoundedFrame("ACCELERATION Y", 3, 76, 76, 30);
 	drawRoundedFrame("ACCELERATION Z", 81, 76, 76, 30);
+}
+
+void OcsGraphics::drawFifthScreen()
+{
+	drawRoundedFrame("MAGNETOMETER X", 3, 12, 76, 30);
+	drawRoundedFrame("MAGNETOMETER Y", 81, 12, 76, 30);
+	drawRoundedFrame("MAGNETOMETER Z", 3, 44, 76, 30);
 }
 
 void OcsGraphics::drawRoundedFrame(String text, int x, int y, int sizeX, int sizeY)
