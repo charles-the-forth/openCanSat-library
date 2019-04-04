@@ -43,6 +43,8 @@ class OcsGraphics
 	void drawTime(String time);
 
 	void drawFirstScreen();
+
+	void drawSecondScreen();
 };
 
 #endif /* _OCSGRAPHICS_HH */

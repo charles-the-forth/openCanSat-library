@@ -28,6 +28,10 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 		drawDate(10, 1, 2018);
 		break;
 
+	case 2:
+		drawSecondScreen();
+		break;
+
 	default:
 		break;
 	}
@@ -112,22 +116,32 @@ int OcsGraphics::divide(int x, double y)
 
 void OcsGraphics::drawFirstScreen()
 {
-	drawRoundedFrame("LON", 83, 12, 74, 30);
-	drawRoundedFrame("LAT", 83, 44, 74, 30);
-	drawRoundedFrame("SATELLITES COUNT", 83, 76, 74, 30);
+	drawRoundedFrame("LONGITUDE", 81, 12, 76, 30);
+	drawRoundedFrame("LATITUDE", 81, 44, 76, 30);
+	drawRoundedFrame("SATELLITES COUNT", 81, 76, 76, 30);
+}
+
+
+void OcsGraphics::drawSecondScreen()
+{
+	drawRoundedFrame("PRESSURE", 3, 12, 76, 30);
+	drawRoundedFrame("ALTITUDE", 81, 12, 76, 30);
+	drawRoundedFrame("POWER", 3, 44, 76, 30);
+	drawRoundedFrame("LIGHT INTENSITY", 81, 44, 76, 30);
+	drawRoundedFrame("UV INDEX", 3, 76, 154, 30);
 }
 
 void OcsGraphics::drawRoundedFrame(String text, int x, int y, int sizeX, int sizeY)
 {
 	ucg.setColor(255, 255, 255);
 
-  ucg.setPrintPos(x + 4, y + 10);
+	ucg.setPrintPos(x + 4, y + 10);
 
 	ucg.setFont(ucg_font_micro_mf);
 
-  ucg.print(text);
+	ucg.print(text);
 
-  ucg.drawRFrame(x, y, sizeX, sizeY, 3);
+	ucg.drawRFrame(x, y, sizeX, sizeY, 3);
 }
 
 void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
@@ -141,54 +155,53 @@ void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
 	String sDay;
 	String sMonth;
 
-	if(day<10)
+	if (day < 10)
 	{
 		sDay += "0";
 	}
 
-	switch(month)
+	switch (month)
 	{
-		case 0:
-		case 1:
-			sMonth = "January";
-			break;
-		case 2:
-			sMonth = "February";
-			break;
-		case 3:
-			sMonth = "March";
-			break;
-		case 4:
-			sMonth = "April";
-			break;
-		case 5:
-			sMonth = "May";
-			break;
-		case 6:
-			sMonth = "June";
-			break;
-		case 7:
-			sMonth = "July";
-			break;
-		case 8:
-			sMonth = "August";
-			break;
-		case 9:
-			sMonth = "September";
-			break;
-		case 10:
-			sMonth = "October";
-			break;
-		case 11:
-			sMonth = "November";
-			break;
-		case 12:
-			sMonth = "December";
-			break;
+	case 0:
+	case 1:
+		sMonth = "January";
+		break;
+	case 2:
+		sMonth = "February";
+		break;
+	case 3:
+		sMonth = "March";
+		break;
+	case 4:
+		sMonth = "April";
+		break;
+	case 5:
+		sMonth = "May";
+		break;
+	case 6:
+		sMonth = "June";
+		break;
+	case 7:
+		sMonth = "July";
+		break;
+	case 8:
+		sMonth = "August";
+		break;
+	case 9:
+		sMonth = "September";
+		break;
+	case 10:
+		sMonth = "October";
+		break;
+	case 11:
+		sMonth = "November";
+		break;
+	case 12:
+		sMonth = "December";
+		break;
 	}
 
-
-	if(day==0 or year==0)
+	if (day == 0 or year == 0)
 	{
 		sDay += 1;
 		year = 1990;
@@ -199,7 +212,6 @@ void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
 	ucg.setPrintPos(13, 58);
 	ucg.setFont(ucg_font_helvB10_tr);
 	ucg.print(sDay);
-
 
 	ucg.setFont(ucg_font_helvB10_tr);
 	ucg.setPrintPos(13, 73);
@@ -212,11 +224,11 @@ void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
 
 void OcsGraphics::drawTime(String time)
 {
-  ucg.setRotate90();
+	ucg.setRotate90();
 
-  ucg.setColor(255, 255, 255);
-  ucg.setPrintPos(13, 40);
-  ucg.setFont(ucg_font_helvB10_tr);
+	ucg.setColor(255, 255, 255);
+	ucg.setPrintPos(13, 40);
+	ucg.setFont(ucg_font_helvB10_tr);
 
-  ucg.print(time);
+	ucg.print(time);
 }
