@@ -36,6 +36,10 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 		drawThirdScreen();
 		break;
 
+	case 4:
+		drawFourthScreen();
+		break;
+
 	default:
 		break;
 	}
@@ -141,6 +145,16 @@ void OcsGraphics::drawThirdScreen()
 	drawRoundedFrame("TEMP INTERNAL", 3, 44, 76, 30);
 	drawRoundedFrame("TEMP EXTERNAL", 81, 44, 76, 30);
 	drawRoundedFrame("HUMIDITY", 3, 76, 154, 30);
+}
+
+void OcsGraphics::drawFourthScreen()
+{
+	drawRoundedFrame("ROTATION X", 3, 12, 76, 30);
+	drawRoundedFrame("ROTATION Y", 81, 12, 76, 30);
+	drawRoundedFrame("ROTATION Z", 3, 44, 76, 30);
+	drawRoundedFrame("ACCELERATION X", 81, 44, 76, 30);
+	drawRoundedFrame("ACCELERATION Y", 3, 76, 76, 30);
+	drawRoundedFrame("ACCELERATION Z", 81, 76, 76, 30);
 }
 
 void OcsGraphics::drawRoundedFrame(String text, int x, int y, int sizeX, int sizeY)
