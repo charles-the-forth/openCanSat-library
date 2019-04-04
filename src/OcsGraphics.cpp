@@ -32,6 +32,10 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 		drawSecondScreen();
 		break;
 
+	case 3:
+		drawThirdScreen();
+		break;
+
 	default:
 		break;
 	}
@@ -121,7 +125,6 @@ void OcsGraphics::drawFirstScreen()
 	drawRoundedFrame("SATELLITES COUNT", 81, 76, 76, 30);
 }
 
-
 void OcsGraphics::drawSecondScreen()
 {
 	drawRoundedFrame("PRESSURE", 3, 12, 76, 30);
@@ -129,6 +132,15 @@ void OcsGraphics::drawSecondScreen()
 	drawRoundedFrame("POWER", 3, 44, 76, 30);
 	drawRoundedFrame("LIGHT INTENSITY", 81, 44, 76, 30);
 	drawRoundedFrame("UV INDEX", 3, 76, 154, 30);
+}
+
+void OcsGraphics::drawThirdScreen()
+{
+	drawRoundedFrame("MESSAGE ID", 3, 12, 76, 30);
+	drawRoundedFrame("TEMP MPU", 81, 12, 76, 30);
+	drawRoundedFrame("TEMP INTERNAL", 3, 44, 76, 30);
+	drawRoundedFrame("TEMP EXTERNAL", 81, 44, 76, 30);
+	drawRoundedFrame("HUMIDITY", 3, 76, 154, 30);
 }
 
 void OcsGraphics::drawRoundedFrame(String text, int x, int y, int sizeX, int sizeY)
