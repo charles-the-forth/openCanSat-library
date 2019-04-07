@@ -35,8 +35,10 @@ class OpenCansatGPS
     uint8_t getMinute();
     uint8_t getSecond();
     uint8_t getNumberOfSatellites();
-    String getLat();
-    String getLon();
+    uint16_t getLatInt();
+    uint16_t getLonInt();
+    uint32_t getLatAfterDot();
+    uint32_t getLonAfterDot();
     double getAlt();
     double getSpeed();
     double getHdop();
@@ -83,8 +85,10 @@ class OpenCansatGPS
 
     struct gpsData
     {
-        String lat;
-        String lon;
+        uint16_t latInt;
+        uint32_t latAfterDot;
+        uint16_t lonInt;
+        uint32_t lonAfterDot;
         uint8_t numSat;
         double speed;
         double alt;

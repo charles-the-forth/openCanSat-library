@@ -73,14 +73,24 @@ uint8_t OpenCansatGPS::getNumberOfSatellites()
     return data.numSat;
 }
 
-String OpenCansatGPS::getLat()
+uint16_t OpenCansatGPS::getLatInt()
 {
-    return data.lat;
+    return data.latInt;
 }
 
-String OpenCansatGPS::getLon()
+uint32_t OpenCansatGPS::getLatAfterDot()
 {
-    return data.lon;
+    return data.latAfterDot;
+}
+
+uint16_t OpenCansatGPS::getLonInt()
+{
+    return data.lonInt;
+}
+
+uint32_t OpenCansatGPS::getLonAfterDot()
+{
+    return data.lonAfterDot;
 }
 
 double OpenCansatGPS::getAlt()
@@ -137,8 +147,8 @@ bool OpenCansatGPS::scan(uint32_t timeout)
         log(String("[scan] num sats SCAN = ") + data.numSat);
     }
 
-    log(String("[scan] lat = ") + data.lat);
-    log(String("[scan] lon = ") + data.lon);
+    log(String("[scan] lat = ") + String(data.latInt) + "." + String(data.latAfterDot));
+    log(String("[scan] lon = ") + String(data.lonInt) + "." + String(data.lonAfterDot));
 
     return result;
 }
@@ -154,7 +164,7 @@ void OpenCansatGPS::log(String message)
 void OpenCansatGPS::resetValues()
 {
     timeDate = {0, 0, 0, 0, 0, 0};
-    data = {"0", "0", 0, 0, 0, 0, false, false};
+    data = {0, 0, 0, 0, 0, 0, 0, 0, false, false};
 
     isSeenLatLon = false;
     isSeenAlt = false;
@@ -388,15 +398,23 @@ bool OpenCansatGPS::parseGNGLL(const String &line)
 {
     log(String("Parse: ") + line);
 
-    data.lat = getField(line, 1);
-    data.lon = getField(line, 3);
+    String input = getField(line, 1);
+    int dotIndex = input.indexOf(".");
+    data.latInt = input.substring(0, dotIndex).toInt();
+    data.latAfterDot = input.substring(dotIndex + 1).toInt();
+
+    input = getField(line, 3);
+    dotIndex = input.indexOf(".");
+    data.lonInt = input.substring(0, dotIndex).toInt();
+    data.lonAfterDot = input.substring(dotIndex + 1).toInt();
+
     String directNS = getField(line, 2);
     String directEW = getField(line, 4);
     String time = getField(line, 5);
     String status = getField(line, 6);
 
-    log(String("[scan] data.lat = ") + data.lat);
-    log(String("[scan] data.lon = ") + data.lon);
+    log(String("[scan] data.lat = ") + String(data.latInt) + "." + String(data.latAfterDot));
+    log(String("[scan] data.lon = ") + String(data.lonInt) + "." + String(data.lonAfterDot));
 
     log(String("[scan] status = ") + String(status));
 
