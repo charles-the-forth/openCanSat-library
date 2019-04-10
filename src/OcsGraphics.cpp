@@ -26,8 +26,8 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 	{
 	case 1:
 		drawFirstScreen();
-		drawTime("18:46:10");
-		drawDate(10, 1, 2018);
+		drawTime("14:46:10");
+		drawDate(10, 4, 2019);
 		break;
 
 	case 2:
@@ -134,6 +134,10 @@ void OcsGraphics::drawFirstScreen()
 	drawRoundedBox("LATITUDE", 81, 44, 76, 30);
 	drawBox(81, 91, 76, 1);
 	drawRoundedBox("SATELLITES COUNT", 81, 76, 76, 30);
+
+	drawLongitude(5002, 2308);
+	drawLatitude(1546, 79412);
+	drawSatellitesCount(5);
 }
 
 void OcsGraphics::drawSecondScreen()
@@ -156,6 +160,11 @@ void OcsGraphics::drawThirdScreen()
 	drawRoundedBox("TEMP EXTERNAL", 81, 44, 76, 30);
 	drawBox(3, 91, 154, 1);
 	drawRoundedBox("HUMIDITY", 3, 76, 154, 30);
+
+	drawMessageId(123);
+	drawTemperatureMPU(24.51f);
+	drawTemperatureInternal(25.1f);
+	drawTemperatureExternal(23.5f);
 }
 
 void OcsGraphics::drawFourthScreen()
@@ -291,4 +300,41 @@ void OcsGraphics::drawBox(int x, int y, int sizeX, int sizeY) {
 	ucg.setColor(255, 255, 255);
 
 	ucg.drawBox(x, y, sizeX, sizeY);
+}
+
+void OcsGraphics::drawLongitude(uint16_t lonInt, uint32_t lonAfterDot) {
+
+	drawText(String(lonInt / 100) + " " + String(lonInt % 100) + "." + String(lonAfterDot), 85, 37);
+}
+
+void OcsGraphics::drawLatitude(uint16_t latInt, uint32_t latAfterDot) {
+	drawText(String(latInt / 100) + " " + String(latInt % 100) + "." + String(latAfterDot), 85, 69);
+}
+
+void OcsGraphics::drawSatellitesCount(uint16_t satellitesCount) {
+	drawText(String(satellitesCount), 85, 101);
+}
+
+void OcsGraphics::drawMessageId(uint32_t messageId) {
+	drawText(String(messageId), 7, 37);
+}
+
+void OcsGraphics::drawTemperatureMPU(float temperature) {
+	drawText(String(temperature) + " C", 85, 37);
+}
+
+void OcsGraphics::drawTemperatureInternal(float temperature) {
+	drawText(String(temperature) + " C", 7, 69);
+}
+
+void OcsGraphics::drawTemperatureExternal(float temperature) {
+	drawText(String(temperature) + " C", 85, 69);
+}
+
+void OcsGraphics::drawText(String text, int x, int y) {
+	ucg.setColor(0, 0, 0);
+	ucg.setPrintPos(x, y);
+	ucg.setFont(ucg_font_helvB08_tr);
+
+	ucg.print(text);
 }

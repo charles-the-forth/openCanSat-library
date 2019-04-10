@@ -13,6 +13,20 @@ class OcsGraphics
 	void drawHomescreen();
 	void drawScreen(uint8_t screenNum);
 
+	void drawLongitude(uint16_t lonInt, uint32_t lonAfterDot);
+
+	void drawLatitude(uint16_t latInt, uint32_t latAfterDot);
+
+	void drawSatellitesCount(uint16_t satellitesCount);
+
+	void drawMessageId(uint32_t messageId);
+
+	void drawTemperatureMPU(float temperature);
+
+	void drawTemperatureInternal(float temperature);
+
+	void drawTemperatureExternal(float temperature);
+
   private:
 	Ucglib_ST7735_18x128x160_HWSPI &ucg;
 
@@ -55,6 +69,8 @@ class OcsGraphics
 	void drawFourthScreen();
 
 	void drawFifthScreen();
+
+	void drawText(String text, int x, int y);
 };
 
 #endif /* _OCSGRAPHICS_HH */
