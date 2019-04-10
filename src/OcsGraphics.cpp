@@ -184,6 +184,13 @@ void OcsGraphics::drawFourthScreen()
 	drawRoundedBox("ACCELERATION Y", 3, 76, 76, 30);
 	drawBox(81, 91, 76, 1);
 	drawRoundedBox("ACCELERATION Z", 81, 76, 76, 30);
+
+	drawRotationX(12.1f);
+	drawRotationY(23.4f);
+	drawRotationZ(32.4f);
+	drawAccelerationX(5.1f);
+	drawAccelerationY(8.1f);
+	drawAccelerationZ(2.5f);
 }
 
 void OcsGraphics::drawFifthScreen()
@@ -360,6 +367,30 @@ void OcsGraphics::drawTemperatureInternal(float temperature) {
 
 void OcsGraphics::drawTemperatureExternal(float temperature) {
 	drawText(String(temperature), 85, 69);
+}
+
+void OcsGraphics::drawRotationX(float rotationX) {
+	drawText(String(rotationX), 7, 37);
+}
+
+void OcsGraphics::drawRotationY(float rotationY) {
+	drawText(String(rotationY), 85, 37);
+}
+
+void OcsGraphics::drawRotationZ(float rotationZ) {
+	drawText(String(rotationZ), 7, 69);
+}
+
+void OcsGraphics::drawAccelerationX(float accelerationX) {
+	drawText(String(accelerationX), 85, 69);
+}
+
+void OcsGraphics::drawAccelerationY(float accelerationY) {
+	drawText(String(accelerationY), 7, 101);
+}
+
+void OcsGraphics::drawAccelerationZ(float accelerationZ) {
+	drawText(String(accelerationZ), 85, 101);
 }
 
 void OcsGraphics::drawText(String text, int x, int y) {

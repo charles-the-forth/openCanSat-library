@@ -39,6 +39,18 @@ class OcsGraphics
 
 	void drawTemperatureExternal(float temperature);
 
+	void drawRotationX(float rotationX);
+
+	void drawRotationY(float rotationY);
+
+	void drawRotationZ(float rotationZ);
+
+	void drawAccelerationX(float accelerationX);
+
+	void drawAccelerationY(float accelerationY);
+
+	void drawAccelerationZ(float accelerationZ);
+
   private:
 	Ucglib_ST7735_18x128x160_HWSPI &ucg;
 
