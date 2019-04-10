@@ -198,6 +198,10 @@ void OcsGraphics::drawFifthScreen()
 	drawRoundedBox("MAGNETOMETER X", 3, 12, 76, 30);
 	drawRoundedBox("MAGNETOMETER Y", 81, 12, 76, 30);
 	drawRoundedBox("MAGNETOMETER Z", 3, 44, 76, 30);
+
+	drawMagnetometerX(14.5f);
+	drawMagnetometerY(1.5f);
+	drawMagnetometerZ(44.5f);
 }
 
 void OcsGraphics::drawRoundedBox(String text, int x, int y, int sizeX, int sizeY)
@@ -391,6 +395,18 @@ void OcsGraphics::drawAccelerationY(float accelerationY) {
 
 void OcsGraphics::drawAccelerationZ(float accelerationZ) {
 	drawText(String(accelerationZ), 85, 101);
+}
+
+void OcsGraphics::drawMagnetometerX(float magnetometerX) {
+	drawText(String(magnetometerX), 7, 37);
+}
+
+void OcsGraphics::drawMagnetometerY(float magnetometerY) {
+	drawText(String(magnetometerY), 85, 37);
+}
+
+void OcsGraphics::drawMagnetometerZ(float magnetometerZ) {
+	drawText(String(magnetometerZ), 7, 69);
 }
 
 void OcsGraphics::drawText(String text, int x, int y) {

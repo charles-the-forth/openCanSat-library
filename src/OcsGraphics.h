@@ -51,6 +51,12 @@ class OcsGraphics
 
 	void drawAccelerationZ(float accelerationZ);
 
+	void drawMagnetometerX(float magnetometerX);
+
+	void drawMagnetometerY(float magnetometerY);
+
+	void drawMagnetometerZ(float magnetometerZ);
+
   private:
 	Ucglib_ST7735_18x128x160_HWSPI &ucg;
 
