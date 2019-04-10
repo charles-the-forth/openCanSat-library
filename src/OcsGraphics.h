@@ -100,6 +100,8 @@ class OcsGraphics
 
 	void drawFifthScreen();
 
+	void drawSixthScreen();
+
 	void drawText(String text, int x, int y);
 };
 

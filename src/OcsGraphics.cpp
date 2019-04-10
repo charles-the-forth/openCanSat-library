@@ -22,7 +22,8 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 
 	drawHeader(screenNum);
 
-	switch (screenNum)
+	drawSixthScreen();
+	/*switch (screenNum)
 	{
 	case 1:
 		drawFirstScreen();
@@ -48,7 +49,7 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 
 	default:
 		break;
-	}
+	}*/
 
 	drawFooter(screenNum);
 }
@@ -203,6 +204,119 @@ void OcsGraphics::drawFifthScreen()
 	drawMagnetometerY(1.5f);
 	drawMagnetometerZ(44.5f);
 }
+
+void OcsGraphics::drawSixthScreen()
+{
+	ucg.setColor(255, 255, 255);
+	ucg.drawDisc(80, 61, 50, UCG_DRAW_ALL);
+
+	ucg.setColor(0, 0, 0);
+	
+	ucg.drawTriangle(79, 20, 79, 69, 48, 69);
+	
+	ucg.drawBox(79, 20, 12, 80);
+
+	ucg.drawBox(48, 69, 62, 2);
+
+	ucg.drawBox(48, 82, 62, 2);
+	
+	ucg.drawBox(77, 81, 2, 19);
+
+	ucg.drawBox(95, 95, 5, 5);
+
+	ucg.setColor(255, 255, 255);
+
+	ucg.drawTriangle(77, 43, 77, 69, 61, 69);
+	
+	ucg.drawBox(48, 71, 73, 11);
+
+	ucg.setColor(0, 0, 0);
+	
+	ucg.setPrintPos(48, 81);
+	
+	ucg.setFont(ucg_font_courB10_tr);
+
+	ucg.print("CHARLES");
+
+	ucg.setColor(255, 255, 255);
+
+	ucg.setPrintPos(82, 28);
+	
+	ucg.setFont(ucg_font_orgv01_tr);
+	ucg.print("C");
+
+	ucg.setPrintPos(82, 36);
+	
+	ucg.setFont(ucg_font_orgv01_tr);
+	ucg.print("A");
+
+	ucg.setPrintPos(82, 44);
+	
+	ucg.setFont(ucg_font_orgv01_tr);
+	ucg.print("N");
+
+	ucg.setPrintPos(82, 52);
+	
+	ucg.setFont(ucg_font_orgv01_tr);
+	ucg.print("S");
+
+	ucg.setPrintPos(82, 60);
+	
+	ucg.setFont(ucg_font_orgv01_tr);
+	ucg.print("A");
+
+	ucg.setPrintPos(82, 68);
+	
+	ucg.setFont(ucg_font_orgv01_tr);
+	ucg.print("T");
+
+	ucg.setPrintPos(78, 93);
+	
+	ucg.setFont(ucg_font_u8glib_4_tr);
+	ucg.print("TM.");
+}
+
+/*
+void OcsGraphics::drawSixthScreen()
+{
+	ucg.setColor(255, 255, 255);
+	ucg.drawDisc(80, 61, 45, UCG_DRAW_ALL);
+
+	ucg.setColor(0, 0, 0);
+	
+	ucg.drawTriangle(76, 20, 76, 69, 45, 69);
+	
+	ucg.drawBox(76, 20, 12, 80);
+
+	ucg.drawBox(45, 69, 62, 2);
+
+	ucg.drawBox(45, 82, 62, 2);
+	
+	ucg.drawBox(74, 81, 2, 19);
+
+	ucg.drawBox(92, 95, 5, 5);
+
+	ucg.setColor(255, 255, 255);
+
+	ucg.drawTriangle(74, 43, 74, 69, 58, 69);
+	
+	ucg.drawBox(45, 71, 70, 11);
+
+	ucg.setColor(0, 0, 0);
+	
+	ucg.setPrintPos(45, 81);
+	
+	ucg.setFont(ucg_font_courB10_tr);
+
+	ucg.print("CHARLES");
+
+	ucg.setColor(255, 255, 255);
+
+	ucg.setPrintPos(75, 93);
+	
+	ucg.setFont(ucg_font_u8glib_4_tr);
+	ucg.print("TM.");
+}*/
 
 void OcsGraphics::drawRoundedBox(String text, int x, int y, int sizeX, int sizeY)
 {
