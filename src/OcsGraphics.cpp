@@ -18,6 +18,8 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 	ucg.clearScreen();
 	ucg.setRotate90();
 
+	drawBackground();
+
 	drawHeader(screenNum);
 
 	switch (screenNum)
@@ -77,7 +79,7 @@ void OcsGraphics::drawFooter(uint8_t screenNum)
 		drawLeftArrow(10, 118);
 	}
 
-	drawHome(74, 114, 12, 11, 17, 30, 108);
+	drawHome(74, 114, 12, 11, 115, 210, 247);
 
 	if (screenNum < 6)
 	{
@@ -128,58 +130,66 @@ int OcsGraphics::divide(int x, double y)
 
 void OcsGraphics::drawFirstScreen()
 {
-	drawRoundedFrame("LONGITUDE", 81, 12, 76, 30);
-	drawRoundedFrame("LATITUDE", 81, 44, 76, 30);
-	drawRoundedFrame("SATELLITES COUNT", 81, 76, 76, 30);
+	drawRoundedBox("LONGITUDE", 81, 12, 76, 30);
+	drawRoundedBox("LATITUDE", 81, 44, 76, 30);
+	drawBox(81, 91, 76, 1);
+	drawRoundedBox("SATELLITES COUNT", 81, 76, 76, 30);
 }
 
 void OcsGraphics::drawSecondScreen()
 {
-	drawRoundedFrame("PRESSURE", 3, 12, 76, 30);
-	drawRoundedFrame("ALTITUDE", 81, 12, 76, 30);
-	drawRoundedFrame("POWER", 3, 44, 76, 30);
-	drawRoundedFrame("LIGHT INTENSITY", 81, 44, 76, 30);
-	drawRoundedFrame("UV INDEX", 3, 76, 76, 30);
-	drawRoundedFrame("AIR QUALITY", 81, 76, 76, 30);
+	drawRoundedBox("PRESSURE", 3, 12, 76, 30);
+	drawRoundedBox("ALTITUDE", 81, 12, 76, 30);
+	drawRoundedBox("POWER", 3, 44, 76, 30);
+	drawRoundedBox("LIGHT INTENSITY", 81, 44, 76, 30);
+	drawBox(3, 91, 76, 1);
+	drawRoundedBox("UV INDEX", 3, 76, 76, 30);
+	drawBox(81, 91, 76, 1);
+	drawRoundedBox("AIR QUALITY", 81, 76, 76, 30);
 }
 
 void OcsGraphics::drawThirdScreen()
 {
-	drawRoundedFrame("MESSAGE ID", 3, 12, 76, 30);
-	drawRoundedFrame("TEMP MPU", 81, 12, 76, 30);
-	drawRoundedFrame("TEMP INTERNAL", 3, 44, 76, 30);
-	drawRoundedFrame("TEMP EXTERNAL", 81, 44, 76, 30);
-	drawRoundedFrame("HUMIDITY", 3, 76, 154, 30);
+	drawRoundedBox("MESSAGE ID", 3, 12, 76, 30);
+	drawRoundedBox("TEMP MPU", 81, 12, 76, 30);
+	drawRoundedBox("TEMP INTERNAL", 3, 44, 76, 30);
+	drawRoundedBox("TEMP EXTERNAL", 81, 44, 76, 30);
+	drawBox(3, 91, 154, 1);
+	drawRoundedBox("HUMIDITY", 3, 76, 154, 30);
 }
 
 void OcsGraphics::drawFourthScreen()
 {
-	drawRoundedFrame("ROTATION X", 3, 12, 76, 30);
-	drawRoundedFrame("ROTATION Y", 81, 12, 76, 30);
-	drawRoundedFrame("ROTATION Z", 3, 44, 76, 30);
-	drawRoundedFrame("ACCELERATION X", 81, 44, 76, 30);
-	drawRoundedFrame("ACCELERATION Y", 3, 76, 76, 30);
-	drawRoundedFrame("ACCELERATION Z", 81, 76, 76, 30);
+	drawRoundedBox("ROTATION X", 3, 12, 76, 30);
+	drawRoundedBox("ROTATION Y", 81, 12, 76, 30);
+	drawRoundedBox("ROTATION Z", 3, 44, 76, 30);
+	drawRoundedBox("ACCELERATION X", 81, 44, 76, 30);
+	drawBox(3, 91, 76, 1);
+	drawRoundedBox("ACCELERATION Y", 3, 76, 76, 30);
+	drawBox(81, 91, 76, 1);
+	drawRoundedBox("ACCELERATION Z", 81, 76, 76, 30);
 }
 
 void OcsGraphics::drawFifthScreen()
 {
-	drawRoundedFrame("MAGNETOMETER X", 3, 12, 76, 30);
-	drawRoundedFrame("MAGNETOMETER Y", 81, 12, 76, 30);
-	drawRoundedFrame("MAGNETOMETER Z", 3, 44, 76, 30);
+	drawRoundedBox("MAGNETOMETER X", 3, 12, 76, 30);
+	drawRoundedBox("MAGNETOMETER Y", 81, 12, 76, 30);
+	drawRoundedBox("MAGNETOMETER Z", 3, 44, 76, 30);
 }
 
-void OcsGraphics::drawRoundedFrame(String text, int x, int y, int sizeX, int sizeY)
+void OcsGraphics::drawRoundedBox(String text, int x, int y, int sizeX, int sizeY)
 {
 	ucg.setColor(255, 255, 255);
+	
+	ucg.drawRBox(x, y, sizeX, sizeY, 3);
+
+	ucg.setColor(0, 0, 0);
 
 	ucg.setPrintPos(x + 4, y + 10);
 
 	ucg.setFont(ucg_font_micro_mf);
 
 	ucg.print(text);
-
-	ucg.drawRFrame(x, y, sizeX, sizeY, 3);
 }
 
 void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
@@ -269,4 +279,16 @@ void OcsGraphics::drawTime(String time)
 	ucg.setFont(ucg_font_helvB10_tr);
 
 	ucg.print(time);
+}
+
+void OcsGraphics::drawBackground() {
+	ucg.setColor(115, 210, 247);
+
+	ucg.drawBox(0, 0, 160, 128);
+}
+
+void OcsGraphics::drawBox(int x, int y, int sizeX, int sizeY) {
+	ucg.setColor(255, 255, 255);
+
+	ucg.drawBox(x, y, sizeX, sizeY);
 }

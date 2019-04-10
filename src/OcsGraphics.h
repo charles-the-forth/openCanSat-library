@@ -32,11 +32,15 @@ class OcsGraphics
 
 	void drawHome(int x, int y, int width, int height, int r, int g, int b);
 
+	void drawBackground();
+
 	void drawRightArrow(int x, int y);
 
 	void drawLeftArrow(int x, int y);
 
-	void drawRoundedFrame(String text, int x, int y, int sizeX, int sizeY);
+	void drawRoundedBox(String text, int x, int y, int sizeX, int sizeY);
+
+	void drawBox(int x, int y, int sizeX, int sizeY);
 
 	void drawDate(uint8_t day, uint8_t month, uint16_t year);
 
