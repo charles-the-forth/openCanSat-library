@@ -22,8 +22,7 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 
 	drawHeader(screenNum);
 
-	drawSixthScreen();
-	/*switch (screenNum)
+	switch (screenNum)
 	{
 	case 1:
 		drawFirstScreen();
@@ -47,9 +46,13 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 		drawFifthScreen();
 		break;
 
+	case 6:
+		drawSixthScreen();
+		break;
+
 	default:
 		break;
-	}*/
+	}
 
 	drawFooter(screenNum);
 }
