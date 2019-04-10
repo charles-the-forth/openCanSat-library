@@ -19,6 +19,18 @@ class OcsGraphics
 
 	void drawSatellitesCount(uint16_t satellitesCount);
 
+	void drawPressure(uint16_t pressure);
+
+	void drawAltitude(uint16_t altitude);
+
+	void drawPower(uint16_t power);
+
+	void drawLightIntensity(uint32_t lightIntensity);
+
+	void drawUVIndex(uint16_t uvIndex);
+
+	void drawAirQuality(uint16_t airQuality);
+
 	void drawMessageId(uint32_t messageId);
 
 	void drawTemperatureMPU(float temperature);

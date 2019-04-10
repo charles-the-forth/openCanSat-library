@@ -142,14 +142,21 @@ void OcsGraphics::drawFirstScreen()
 
 void OcsGraphics::drawSecondScreen()
 {
-	drawRoundedBox("PRESSURE", 3, 12, 76, 30);
-	drawRoundedBox("ALTITUDE", 81, 12, 76, 30);
+	drawRoundedBox("PRESSURE [hPa]", 3, 12, 76, 30);
+	drawRoundedBox("ALTITUDE [m]", 81, 12, 76, 30);
 	drawRoundedBox("POWER", 3, 44, 76, 30);
-	drawRoundedBox("LIGHT INTENSITY", 81, 44, 76, 30);
+	drawRoundedBox("LIGHT [lx]", 81, 44, 76, 30);
 	drawBox(3, 91, 76, 1);
 	drawRoundedBox("UV INDEX", 3, 76, 76, 30);
 	drawBox(81, 91, 76, 1);
 	drawRoundedBox("AIR QUALITY", 81, 76, 76, 30);
+
+	drawPressure(1024);
+	drawAltitude(700);
+	drawPower(10);
+	drawLightIntensity(1300);
+	drawUVIndex(1.3);
+	drawAirQuality(100);
 }
 
 void OcsGraphics::drawThirdScreen()
@@ -315,20 +322,44 @@ void OcsGraphics::drawSatellitesCount(uint16_t satellitesCount) {
 	drawText(String(satellitesCount), 85, 101);
 }
 
+void OcsGraphics::drawPressure(uint16_t pressure) {
+	drawText(String(pressure), 7, 37);
+}
+
+void OcsGraphics::drawAltitude(uint16_t altitude) {
+	drawText(String(altitude), 85, 37);
+}
+
+void OcsGraphics::drawPower(uint16_t power) {
+	drawText(String(power), 7, 69);
+}
+
+void OcsGraphics::drawLightIntensity(uint32_t lightIntensity) {
+	drawText(String(lightIntensity), 85, 69);
+}
+
+void OcsGraphics::drawUVIndex(uint16_t uvIndex) {
+	drawText(String(uvIndex), 7, 101);
+}
+
+void OcsGraphics::drawAirQuality(uint16_t airQuality) {
+	drawText(String(airQuality), 85, 101);
+}
+
 void OcsGraphics::drawMessageId(uint32_t messageId) {
 	drawText(String(messageId), 7, 37);
 }
 
 void OcsGraphics::drawTemperatureMPU(float temperature) {
-	drawText(String(temperature) + " C", 85, 37);
+	drawText(String(temperature), 85, 37);
 }
 
 void OcsGraphics::drawTemperatureInternal(float temperature) {
-	drawText(String(temperature) + " C", 7, 69);
+	drawText(String(temperature), 7, 69);
 }
 
 void OcsGraphics::drawTemperatureExternal(float temperature) {
-	drawText(String(temperature) + " C", 85, 69);
+	drawText(String(temperature), 85, 69);
 }
 
 void OcsGraphics::drawText(String text, int x, int y) {
