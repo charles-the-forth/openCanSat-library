@@ -96,6 +96,8 @@ void OcsGraphics::drawHome(int x, int y, int width, int height, int r, int g, in
 	int halfSizeHeight = divide(height, 2);
 	int halfSizeWidth = divide(width, 2);
 
+	ucg.setRotate90();
+
 	ucg.setColor(255, 255, 255);
 
 	ucg.drawBox(x + divide(width, 4), y + halfSizeHeight, halfSizeWidth, halfSizeHeight);
@@ -111,6 +113,8 @@ void OcsGraphics::drawHome(int x, int y, int width, int height, int r, int g, in
 
 void OcsGraphics::drawRightArrow(int x, int y)
 {
+	ucg.setRotate90();	
+	
 	ucg.setColor(255, 255, 255);
 
 	ucg.drawBox(x, y, 8, 5);
@@ -120,6 +124,8 @@ void OcsGraphics::drawRightArrow(int x, int y)
 
 void OcsGraphics::drawLeftArrow(int x, int y)
 {
+	ucg.setRotate90();
+
 	ucg.setColor(255, 255, 255);
 
 	ucg.drawBox(x, y, 8, 5);
@@ -172,7 +178,6 @@ void OcsGraphics::drawThirdScreen()
 	drawBox(3, 91, 154, 1);
 	drawRoundedBox("HUMIDITY", 3, 76, 154, 30);
 
-	drawMessageId(123);
 	drawTemperatureMPU(24.51f);
 	drawTemperatureInternal(25.1f);
 	drawTemperatureExternal(23.5f);
@@ -278,48 +283,6 @@ void OcsGraphics::drawSixthScreen()
 	ucg.setFont(ucg_font_u8glib_4_tr);
 	ucg.print("TM.");
 }
-
-/*
-void OcsGraphics::drawSixthScreen()
-{
-	ucg.setColor(255, 255, 255);
-	ucg.drawDisc(80, 61, 45, UCG_DRAW_ALL);
-
-	ucg.setColor(0, 0, 0);
-	
-	ucg.drawTriangle(76, 20, 76, 69, 45, 69);
-	
-	ucg.drawBox(76, 20, 12, 80);
-
-	ucg.drawBox(45, 69, 62, 2);
-
-	ucg.drawBox(45, 82, 62, 2);
-	
-	ucg.drawBox(74, 81, 2, 19);
-
-	ucg.drawBox(92, 95, 5, 5);
-
-	ucg.setColor(255, 255, 255);
-
-	ucg.drawTriangle(74, 43, 74, 69, 58, 69);
-	
-	ucg.drawBox(45, 71, 70, 11);
-
-	ucg.setColor(0, 0, 0);
-	
-	ucg.setPrintPos(45, 81);
-	
-	ucg.setFont(ucg_font_courB10_tr);
-
-	ucg.print("CHARLES");
-
-	ucg.setColor(255, 255, 255);
-
-	ucg.setPrintPos(75, 93);
-	
-	ucg.setFont(ucg_font_u8glib_4_tr);
-	ucg.print("TM.");
-}*/
 
 void OcsGraphics::drawRoundedBox(String text, int x, int y, int sizeX, int sizeY)
 {
@@ -527,9 +490,18 @@ void OcsGraphics::drawMagnetometerZ(float magnetometerZ) {
 }
 
 void OcsGraphics::drawText(String text, int x, int y) {
+	ucg.begin(UCG_FONT_MODE_SOLID);
+	
+	ucg.setRotate90();
+	
 	ucg.setColor(0, 0, 0);
+	ucg.setColor(1, 255, 255, 255);
+
 	ucg.setPrintPos(x, y);
-	ucg.setFont(ucg_font_helvB08_tr);
+
+	ucg.setFont(ucg_font_7x13B_tf);
 
 	ucg.print(text);
+
+	ucg.begin(UCG_FONT_MODE_TRANSPARENT);
 }
