@@ -26,8 +26,6 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 	{
 	case 1:
 		drawFirstScreen();
-		drawTime("14:46:10");
-		drawDate(10, 4, 2019);
 		break;
 
 	case 2:
@@ -73,7 +71,7 @@ void OcsGraphics::drawFooter(uint8_t screenNum)
 
 	drawHome(74, 114, 12, 11, 115, 210, 247);
 
-	if (screenNum < 6)
+	if (screenNum < 3)
 	{
 		drawRightArrow(141, 118);
 	}
@@ -132,10 +130,6 @@ void OcsGraphics::drawFirstScreen()
 	drawRoundedBox("LATITUDE", 81, 44, 76, 30);
 	drawBox(81, 91, 76, 1);
 	drawRoundedBox("SATELLITES COUNT", 81, 76, 76, 30);
-
-	drawLongitude(5002, 2308);
-	drawLatitude(1546, 79412);
-	drawSatellitesCount(5);
 }
 
 void OcsGraphics::drawSecondScreen()
@@ -144,10 +138,10 @@ void OcsGraphics::drawSecondScreen()
 	drawRoundedBox("TEMP CANSAT", 81, 12, 76, 30);
 	drawRoundedBox("PRESSURE CANSAT", 3, 44, 76, 30);
 	drawRoundedBox("ALTITUDE CANSAT", 81, 44, 76, 30);
-	drawBox(3, 91, 154, 1);
+	drawBox(3, 91, 76, 1);
 	drawRoundedBox("HUMIDITY CANSAT", 3, 76, 76, 30);
+	drawBox(81, 91, 76, 1);
 	drawRoundedBox("LIGHT INTENSITY", 81, 76, 76, 30);
-	drawBox(3, 91, 154, 1);
 }
 
 void OcsGraphics::drawThirdScreen()
@@ -238,19 +232,13 @@ void OcsGraphics::drawRoundedBox(String text, int x, int y, int sizeX, int sizeY
 
 void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
 {
-
-	ucg.setColor(fontR, fontG, fontB);
-	ucg.setColor(1, bgrR, bgrG, bgrB);
+	ucg.setColor(255, 255, 255);
+	ucg.setColor(1, 115, 210, 247);
 
 	ucg.setRotate90();
 
 	String sDay;
 	String sMonth;
-
-	if (day < 10)
-	{
-		sDay += "0";
-	}
 
 	switch (month)
 	{
@@ -295,7 +283,7 @@ void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
 
 	if (day == 0 or year == 0)
 	{
-		sDay += 1;
+		day += 1;
 		year = 1990;
 	}
 
@@ -314,15 +302,38 @@ void OcsGraphics::drawDate(uint8_t day, uint8_t month, uint16_t year)
 	ucg.print(String(year));
 }
 
-void OcsGraphics::drawTime(String time)
+void OcsGraphics::drawTime(uint8_t hour, uint8_t minute, uint8_t second)
 {
+	String sHour = "";
+	String sMinute = "";
+	String sSecond = "";
+	if (hour < 10) {
+		sHour += "0";
+	}
+	sHour += String(hour);
+	if (minute < 10) {
+		sMinute += "0";
+	}
+	sMinute += String(minute);
+	if (second < 10) {
+		sSecond += "0";
+	}
+	sSecond += String(second);
+	ucg.begin(UCG_FONT_MODE_SOLID);
 	ucg.setRotate90();
 
+	ucg.setColor(115, 210, 247);
+	ucg.drawBox(13, 15, 60, 25);
+
 	ucg.setColor(255, 255, 255);
+	ucg.setColor(1, 115, 210, 247);
+
 	ucg.setPrintPos(13, 40);
 	ucg.setFont(ucg_font_helvB10_tr);
 
-	ucg.print(time);
+	ucg.print(sHour + ":" + sMinute + ":" + sSecond);
+
+	ucg.begin(UCG_FONT_MODE_TRANSPARENT);
 }
 
 void OcsGraphics::drawBackground() {
@@ -338,20 +349,53 @@ void OcsGraphics::drawBox(int x, int y, int sizeX, int sizeY) {
 }
 
 void OcsGraphics::drawLongitude(uint16_t lonInt, uint32_t lonAfterDot) {
-
-	drawText(String(lonInt / 100) + " " + String(lonInt % 100) + "." + String(lonAfterDot), 85, 37);
+	String text = String(lonInt / 100) + " ";
+	if (lonInt % 100 < 10) {
+		text += ("0" + String(lonInt % 100));
+	} else {
+		text += String(lonInt % 100);
+	}
+	if (lonAfterDot >= 10000) {
+		text += ("." + String(lonAfterDot / 10));
+	} else if (lonAfterDot >= 100000) {
+		text += ("." + String(lonAfterDot / 100));
+	} else {
+		text += ("." + String(lonAfterDot));
+	}
+	drawText(text, 85, 37);
 }
 
 void OcsGraphics::drawLatitude(uint16_t latInt, uint32_t latAfterDot) {
-	drawText(String(latInt / 100) + " " + String(latInt % 100) + "." + String(latAfterDot), 85, 69);
+	String text = String(latInt / 100) + " ";
+	if (latInt % 100 < 10) {
+		text += ("0" + String(latInt % 100));
+	} else {
+		text += String(latInt % 100);
+	}
+	if (latAfterDot >= 10000) {
+		text += ("." + String(latAfterDot / 10));
+	} else if (latAfterDot >= 100000) {
+		text += ("." + String(latAfterDot / 100));
+	} else {
+		text += ("." + String(latAfterDot));
+	}
+	drawText(text, 85, 69);
 }
 
 void OcsGraphics::drawSatellitesCount(uint16_t satellitesCount) {
 	drawText(String(satellitesCount), 85, 101);
 }
 
+void OcsGraphics::drawPressureCanSat(uint16_t pressure) {
+	drawText(String(pressure), 7, 69);
+}
+
 void OcsGraphics::drawAltitudeCanSat(uint16_t altitude) {
 	drawText(String(altitude), 85, 69);
+}
+
+void OcsGraphics::drawLightIntensity(uint32_t lightIntensity) {
+	drawText(String(lightIntensity), 85, 101);
 }
 
 void OcsGraphics::drawMessageId(uint32_t messageId) {
@@ -362,16 +406,8 @@ void OcsGraphics::drawTemperatureCanSat(float temperature) {
 	drawText(String(temperature), 85, 37);
 }
 
-void OcsGraphics::drawPressureCanSat(uint16_t pressure) {
-	drawText(String(pressure), 7, 69);
-}
-
-void OcsGraphics::drawHumidityCanSat(float humidityCanSat) {
-	drawText(String(humidityCanSat), 7, 101);
-}
-
-void OcsGraphics::drawLightIntensity(uint32_t lightIntensity) {
-	drawText(String(lightIntensity), 85, 101);
+void OcsGraphics::drawHumidityCanSat(float humidity) {
+	drawText(String(humidity), 7, 101);
 }
 
 void OcsGraphics::drawText(String text, int x, int y) {

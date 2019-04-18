@@ -35,8 +35,8 @@ class OpenCansatGPS
     uint8_t getMinute();
     uint8_t getSecond();
     uint8_t getNumberOfSatellites();
-    uint8_t getLatInt();
-    uint8_t getLonInt();
+    uint16_t getLatInt();
+    uint16_t getLonInt();
     uint32_t getLatAfterDot();
     uint32_t getLonAfterDot();
     double getAlt();

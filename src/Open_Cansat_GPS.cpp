@@ -73,7 +73,7 @@ uint8_t OpenCansatGPS::getNumberOfSatellites()
     return data.numSat;
 }
 
-uint8_t OpenCansatGPS::getLatInt()
+uint16_t OpenCansatGPS::getLatInt()
 {
     return data.latInt;
 }
@@ -83,7 +83,7 @@ uint32_t OpenCansatGPS::getLatAfterDot()
     return data.latAfterDot;
 }
 
-uint8_t OpenCansatGPS::getLonInt()
+uint16_t OpenCansatGPS::getLonInt()
 {
     return data.lonInt;
 }
