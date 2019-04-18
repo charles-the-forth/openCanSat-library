@@ -6,51 +6,50 @@
 
 class OcsStorage
 {
-  public:
-	OcsStorage(OcsGraphics& ocsDesignIn);
+public:
+	OcsStorage(OcsGraphics &ocsDesignIn);
 
 	// define our own struct data type with variables
 	typedef struct
 	{
-	  uint16_t lightIntensity;
+		uint16_t messageId;
 		float temperatureCanSat;
-		float temperatureExternal;
 		float temperatureMPU;
-		float pressureCanSat;
+		float temperatureExternal;
 		float pressureExternal;
 		float humidityCanSat;
 		float humidityExternal;
+		float altitudeExternal;
 		float accelerationX;
 		float accelerationY;
 		float accelerationZ;
 		float rotationX;
 		float rotationY;
 		float rotationZ;
+		uint16_t year;
+		uint8_t month;
+		uint8_t day;
+		uint8_t hour;
+		uint8_t minute;
+		uint8_t second;
+		uint8_t numberOfSatellites;
+		uint8_t latInt;
+		uint8_t lonInt;
+		uint32_t latAfterDot;
+		uint32_t lonAfterDot;
 	} message;
 
 	void Update(message income, uint8_t screenNum);
 
-	float getTemp();
-
 	message getActualData();
 
-	float getMinTemp();
-
-  private:
+private:
 	bool isInitalize;
 	bool isTransition;
 
 	OcsGraphics ocsDesign;
 
-	message actualData {};
-	message minData {};
-	message maxData {};
-
-	void checkTemperature(float temp);
-	void checkPressure(float pressure);
-	void checkAltitude(float altitude);
-	void checkHumidity(float humidity);
+	message actualData{};
 };
 
 #endif /* _OCSGRAPHICS_HH */
-

@@ -176,11 +176,9 @@ void OcsGraphics::drawThirdScreen()
 	drawRoundedBox("TEMP INTERNAL", 3, 44, 76, 30);
 	drawRoundedBox("TEMP EXTERNAL", 81, 44, 76, 30);
 	drawBox(3, 91, 154, 1);
-	drawRoundedBox("HUMIDITY", 3, 76, 154, 30);
-
-	drawTemperatureMPU(24.51f);
-	drawTemperatureInternal(25.1f);
-	drawTemperatureExternal(23.5f);
+	drawRoundedBox("HUMIDITY INTERNAL", 3, 76, 76, 30);
+	drawRoundedBox("HUMIDITY EXTERNAL", 81, 76, 76, 30);
+	drawBox(3, 91, 154, 1);
 }
 
 void OcsGraphics::drawFourthScreen()
@@ -445,7 +443,7 @@ void OcsGraphics::drawTemperatureMPU(float temperature) {
 	drawText(String(temperature), 85, 37);
 }
 
-void OcsGraphics::drawTemperatureInternal(float temperature) {
+void OcsGraphics::drawTemperatureCanSat(float temperature) {
 	drawText(String(temperature), 7, 69);
 }
 
@@ -487,6 +485,14 @@ void OcsGraphics::drawMagnetometerY(float magnetometerY) {
 
 void OcsGraphics::drawMagnetometerZ(float magnetometerZ) {
 	drawText(String(magnetometerZ), 7, 69);
+}
+
+void OcsGraphics::drawHumidityCanSat(float humidityCanSat) {
+	drawText(String(humidityCanSat), 7, 101);
+}
+
+void OcsGraphics::drawHumidityExternal(float humidityExternal) {
+	drawText(String(humidityExternal), 85, 101);
 }
 
 void OcsGraphics::drawText(String text, int x, int y) {

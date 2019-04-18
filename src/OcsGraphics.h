@@ -35,7 +35,7 @@ class OcsGraphics
 
 	void drawTemperatureMPU(float temperature);
 
-	void drawTemperatureInternal(float temperature);
+	void drawTemperatureCanSat(float temperature);
 
 	void drawTemperatureExternal(float temperature);
 
@@ -56,6 +56,10 @@ class OcsGraphics
 	void drawMagnetometerY(float magnetometerY);
 
 	void drawMagnetometerZ(float magnetometerZ);
+
+	void drawHumidityCanSat(float humidityCanSat);
+
+	void drawHumidityExternal(float humidityExternal);
 
   private:
 	Ucglib_ST7735_18x128x160_HWSPI &ucg;
