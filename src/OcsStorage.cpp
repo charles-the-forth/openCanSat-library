@@ -14,13 +14,13 @@ OcsStorage::message OcsStorage::getActualData()
 
 void OcsStorage::Update(message income, uint8_t screenNum)
 {
-	if (screenNum == 3)
-	{
+	if (screenNum == 2)
+	{		
 		ocsDesign.drawMessageId(income.messageId);
-		ocsDesign.drawTemperatureMPU(income.temperatureMPU);
 		ocsDesign.drawTemperatureCanSat(income.temperatureCanSat);
-		ocsDesign.drawTemperatureExternal(income.temperatureExternal);
+		ocsDesign.drawPressureCanSat(income.pressureCanSat);
+		ocsDesign.drawAltitudeCanSat(income.altitudeCanSat);
 		ocsDesign.drawHumidityCanSat(income.humidityCanSat);
-		ocsDesign.drawHumidityExternal(income.humidityExternal);
+		ocsDesign.drawLightIntensity(income.lightIntensity);
 	}
 }

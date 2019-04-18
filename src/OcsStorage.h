@@ -14,18 +14,10 @@ public:
 	{
 		uint16_t messageId;
 		float temperatureCanSat;
-		float temperatureMPU;
-		float temperatureExternal;
-		float pressureExternal;
+		float pressureCanSat;
 		float humidityCanSat;
-		float humidityExternal;
-		float altitudeExternal;
-		float accelerationX;
-		float accelerationY;
-		float accelerationZ;
-		float rotationX;
-		float rotationY;
-		float rotationZ;
+		uint32_t lightIntensity;
+		float altitudeCanSat;
 		uint16_t year;
 		uint8_t month;
 		uint8_t day;

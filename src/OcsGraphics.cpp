@@ -10,7 +10,7 @@ OcsGraphics::OcsGraphics(Ucglib_ST7735_18x128x160_HWSPI &ucgIn)
 
 void OcsGraphics::drawHomescreen()
 {
-	drawScreen(3);
+	drawScreen(2);
 }
 
 void OcsGraphics::drawScreen(uint8_t screenNum)
@@ -38,18 +38,6 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 		drawThirdScreen();
 		break;
 
-	case 4:
-		drawFourthScreen();
-		break;
-
-	case 5:
-		drawFifthScreen();
-		break;
-
-	case 6:
-		drawSixthScreen();
-		break;
-
 	default:
 		break;
 	}
@@ -69,7 +57,7 @@ void OcsGraphics::drawHeader(uint8_t screenNum)
 
 	ucg.setPrintPos(70, 7);
 
-	ucg.print(String(screenNum) + "/6");
+	ucg.print(String(screenNum) + "/3");
 
 	ucg.setPrintPos(90, 7);
 
@@ -152,66 +140,17 @@ void OcsGraphics::drawFirstScreen()
 
 void OcsGraphics::drawSecondScreen()
 {
-	drawRoundedBox("PRESSURE [hPa]", 3, 12, 76, 30);
-	drawRoundedBox("ALTITUDE [m]", 81, 12, 76, 30);
-	drawRoundedBox("POWER", 3, 44, 76, 30);
-	drawRoundedBox("LIGHT [lx]", 81, 44, 76, 30);
-	drawBox(3, 91, 76, 1);
-	drawRoundedBox("UV INDEX", 3, 76, 76, 30);
-	drawBox(81, 91, 76, 1);
-	drawRoundedBox("AIR QUALITY", 81, 76, 76, 30);
-
-	drawPressure(1024);
-	drawAltitude(700);
-	drawPower(10);
-	drawLightIntensity(1300);
-	drawUVIndex(1.3);
-	drawAirQuality(100);
+	drawRoundedBox("MESSAGE ID", 3, 12, 76, 30);
+	drawRoundedBox("TEMP CANSAT", 81, 12, 76, 30);
+	drawRoundedBox("PRESSURE CANSAT", 3, 44, 76, 30);
+	drawRoundedBox("ALTITUDE CANSAT", 81, 44, 76, 30);
+	drawBox(3, 91, 154, 1);
+	drawRoundedBox("HUMIDITY CANSAT", 3, 76, 76, 30);
+	drawRoundedBox("LIGHT INTENSITY", 81, 76, 76, 30);
+	drawBox(3, 91, 154, 1);
 }
 
 void OcsGraphics::drawThirdScreen()
-{
-	drawRoundedBox("MESSAGE ID", 3, 12, 76, 30);
-	drawRoundedBox("TEMP MPU", 81, 12, 76, 30);
-	drawRoundedBox("TEMP INTERNAL", 3, 44, 76, 30);
-	drawRoundedBox("TEMP EXTERNAL", 81, 44, 76, 30);
-	drawBox(3, 91, 154, 1);
-	drawRoundedBox("HUMIDITY INTERNAL", 3, 76, 76, 30);
-	drawRoundedBox("HUMIDITY EXTERNAL", 81, 76, 76, 30);
-	drawBox(3, 91, 154, 1);
-}
-
-void OcsGraphics::drawFourthScreen()
-{
-	drawRoundedBox("ROTATION X", 3, 12, 76, 30);
-	drawRoundedBox("ROTATION Y", 81, 12, 76, 30);
-	drawRoundedBox("ROTATION Z", 3, 44, 76, 30);
-	drawRoundedBox("ACCELERATION X", 81, 44, 76, 30);
-	drawBox(3, 91, 76, 1);
-	drawRoundedBox("ACCELERATION Y", 3, 76, 76, 30);
-	drawBox(81, 91, 76, 1);
-	drawRoundedBox("ACCELERATION Z", 81, 76, 76, 30);
-
-	drawRotationX(12.1f);
-	drawRotationY(23.4f);
-	drawRotationZ(32.4f);
-	drawAccelerationX(5.1f);
-	drawAccelerationY(8.1f);
-	drawAccelerationZ(2.5f);
-}
-
-void OcsGraphics::drawFifthScreen()
-{
-	drawRoundedBox("MAGNETOMETER X", 3, 12, 76, 30);
-	drawRoundedBox("MAGNETOMETER Y", 81, 12, 76, 30);
-	drawRoundedBox("MAGNETOMETER Z", 3, 44, 76, 30);
-
-	drawMagnetometerX(14.5f);
-	drawMagnetometerY(1.5f);
-	drawMagnetometerZ(44.5f);
-}
-
-void OcsGraphics::drawSixthScreen()
 {
 	ucg.setColor(255, 255, 255);
 	ucg.drawDisc(80, 61, 50, UCG_DRAW_ALL);
@@ -411,88 +350,28 @@ void OcsGraphics::drawSatellitesCount(uint16_t satellitesCount) {
 	drawText(String(satellitesCount), 85, 101);
 }
 
-void OcsGraphics::drawPressure(uint16_t pressure) {
-	drawText(String(pressure), 7, 37);
-}
-
-void OcsGraphics::drawAltitude(uint16_t altitude) {
-	drawText(String(altitude), 85, 37);
-}
-
-void OcsGraphics::drawPower(uint16_t power) {
-	drawText(String(power), 7, 69);
-}
-
-void OcsGraphics::drawLightIntensity(uint32_t lightIntensity) {
-	drawText(String(lightIntensity), 85, 69);
-}
-
-void OcsGraphics::drawUVIndex(uint16_t uvIndex) {
-	drawText(String(uvIndex), 7, 101);
-}
-
-void OcsGraphics::drawAirQuality(uint16_t airQuality) {
-	drawText(String(airQuality), 85, 101);
+void OcsGraphics::drawAltitudeCanSat(uint16_t altitude) {
+	drawText(String(altitude), 85, 69);
 }
 
 void OcsGraphics::drawMessageId(uint32_t messageId) {
 	drawText(String(messageId), 7, 37);
 }
 
-void OcsGraphics::drawTemperatureMPU(float temperature) {
+void OcsGraphics::drawTemperatureCanSat(float temperature) {
 	drawText(String(temperature), 85, 37);
 }
 
-void OcsGraphics::drawTemperatureCanSat(float temperature) {
-	drawText(String(temperature), 7, 69);
-}
-
-void OcsGraphics::drawTemperatureExternal(float temperature) {
-	drawText(String(temperature), 85, 69);
-}
-
-void OcsGraphics::drawRotationX(float rotationX) {
-	drawText(String(rotationX), 7, 37);
-}
-
-void OcsGraphics::drawRotationY(float rotationY) {
-	drawText(String(rotationY), 85, 37);
-}
-
-void OcsGraphics::drawRotationZ(float rotationZ) {
-	drawText(String(rotationZ), 7, 69);
-}
-
-void OcsGraphics::drawAccelerationX(float accelerationX) {
-	drawText(String(accelerationX), 85, 69);
-}
-
-void OcsGraphics::drawAccelerationY(float accelerationY) {
-	drawText(String(accelerationY), 7, 101);
-}
-
-void OcsGraphics::drawAccelerationZ(float accelerationZ) {
-	drawText(String(accelerationZ), 85, 101);
-}
-
-void OcsGraphics::drawMagnetometerX(float magnetometerX) {
-	drawText(String(magnetometerX), 7, 37);
-}
-
-void OcsGraphics::drawMagnetometerY(float magnetometerY) {
-	drawText(String(magnetometerY), 85, 37);
-}
-
-void OcsGraphics::drawMagnetometerZ(float magnetometerZ) {
-	drawText(String(magnetometerZ), 7, 69);
+void OcsGraphics::drawPressureCanSat(uint16_t pressure) {
+	drawText(String(pressure), 7, 69);
 }
 
 void OcsGraphics::drawHumidityCanSat(float humidityCanSat) {
 	drawText(String(humidityCanSat), 7, 101);
 }
 
-void OcsGraphics::drawHumidityExternal(float humidityExternal) {
-	drawText(String(humidityExternal), 85, 101);
+void OcsGraphics::drawLightIntensity(uint32_t lightIntensity) {
+	drawText(String(lightIntensity), 85, 101);
 }
 
 void OcsGraphics::drawText(String text, int x, int y) {

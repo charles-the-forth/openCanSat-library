@@ -19,47 +19,21 @@ class OcsGraphics
 
 	void drawSatellitesCount(uint16_t satellitesCount);
 
-	void drawPressure(uint16_t pressure);
+	void drawPressureCanSat(uint16_t pressure);
 
-	void drawAltitude(uint16_t altitude);
-
-	void drawPower(uint16_t power);
+	void drawAltitudeCanSat(uint16_t altitude);
 
 	void drawLightIntensity(uint32_t lightIntensity);
 
-	void drawUVIndex(uint16_t uvIndex);
-
-	void drawAirQuality(uint16_t airQuality);
-
 	void drawMessageId(uint32_t messageId);
-
-	void drawTemperatureMPU(float temperature);
 
 	void drawTemperatureCanSat(float temperature);
 
-	void drawTemperatureExternal(float temperature);
-
-	void drawRotationX(float rotationX);
-
-	void drawRotationY(float rotationY);
-
-	void drawRotationZ(float rotationZ);
-
-	void drawAccelerationX(float accelerationX);
-
-	void drawAccelerationY(float accelerationY);
-
-	void drawAccelerationZ(float accelerationZ);
-
-	void drawMagnetometerX(float magnetometerX);
-
-	void drawMagnetometerY(float magnetometerY);
-
-	void drawMagnetometerZ(float magnetometerZ);
-
 	void drawHumidityCanSat(float humidityCanSat);
+	
+	void drawDate(uint8_t day, uint8_t month, uint16_t year);
 
-	void drawHumidityExternal(float humidityExternal);
+	void drawTime(String time);
 
   private:
 	Ucglib_ST7735_18x128x160_HWSPI &ucg;
@@ -90,21 +64,11 @@ class OcsGraphics
 
 	void drawBox(int x, int y, int sizeX, int sizeY);
 
-	void drawDate(uint8_t day, uint8_t month, uint16_t year);
-
-	void drawTime(String time);
-
 	void drawFirstScreen();
 
 	void drawSecondScreen();
 
 	void drawThirdScreen();
-
-	void drawFourthScreen();
-
-	void drawFifthScreen();
-
-	void drawSixthScreen();
 
 	void drawText(String text, int x, int y);
 };
