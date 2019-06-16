@@ -31,10 +31,6 @@ class OcsGraphics
 
 	void drawHumidityCanSat(float humidity);
 
-	void drawDate(uint8_t day, uint8_t month, uint16_t year);
-
-	void drawTime(uint8_t hour, uint8_t minute, uint8_t second);
-
   private:
 	Ucglib_ST7735_18x128x160_HWSPI &ucg;
 
