@@ -11,11 +11,8 @@ class OcsGraphics
 	OcsGraphics(Ucglib_ST7735_18x128x160_HWSPI &ucgIn);
 
 	void drawHomescreen();
+
 	void drawScreen(uint8_t screenNum);
-
-	void drawLongitude(uint16_t lonInt, uint32_t lonAfterDot);
-
-	void drawLatitude(uint16_t latInt, uint32_t latAfterDot);
 
 	void drawSatellitesCount(uint16_t satellitesCount);
 
@@ -63,8 +60,6 @@ class OcsGraphics
 	void drawFirstScreen();
 
 	void drawSecondScreen();
-
-	void drawThirdScreen();
 
 	void drawText(String text, int x, int y);
 };

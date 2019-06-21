@@ -10,7 +10,7 @@ OcsGraphics::OcsGraphics(Ucglib_ST7735_18x128x160_HWSPI &ucgIn)
 
 void OcsGraphics::drawHomescreen()
 {
-	drawScreen(2);
+	drawScreen(1);
 }
 
 void OcsGraphics::drawScreen(uint8_t screenNum)
@@ -32,10 +32,6 @@ void OcsGraphics::drawScreen(uint8_t screenNum)
 		drawSecondScreen();
 		break;
 
-	case 3:
-		drawThirdScreen();
-		break;
-
 	default:
 		break;
 	}
@@ -55,7 +51,7 @@ void OcsGraphics::drawHeader(uint8_t screenNum)
 
 	ucg.setPrintPos(70, 7);
 
-	ucg.print(String(screenNum) + "/3");
+	ucg.print(String(screenNum) + "/2");
 
 	ucg.setPrintPos(90, 7);
 
@@ -71,7 +67,7 @@ void OcsGraphics::drawFooter(uint8_t screenNum)
 
 	drawHome(74, 114, 12, 11, 115, 210, 247);
 
-	if (screenNum < 3)
+	if (screenNum < 2)
 	{
 		drawRightArrow(141, 118);
 	}
@@ -126,14 +122,6 @@ int OcsGraphics::divide(int x, double y)
 
 void OcsGraphics::drawFirstScreen()
 {
-	drawRoundedBox("LONGITUDE", 81, 12, 76, 30);
-	drawRoundedBox("LATITUDE", 81, 44, 76, 30);
-	drawBox(81, 91, 76, 1);
-	drawRoundedBox("SATELLITES COUNT", 81, 76, 76, 30);
-}
-
-void OcsGraphics::drawSecondScreen()
-{
 	drawRoundedBox("MESSAGE ID", 3, 12, 76, 30);
 	drawRoundedBox("TEMP CANSAT", 81, 12, 76, 30);
 	drawRoundedBox("PRESSURE CANSAT", 3, 44, 76, 30);
@@ -144,7 +132,7 @@ void OcsGraphics::drawSecondScreen()
 	drawRoundedBox("LIGHT INTENSITY", 81, 76, 76, 30);
 }
 
-void OcsGraphics::drawThirdScreen()
+void OcsGraphics::drawSecondScreen()
 {
 	ucg.setColor(255, 255, 255);
 	ucg.drawDisc(80, 61, 50, UCG_DRAW_ALL);
@@ -240,44 +228,6 @@ void OcsGraphics::drawBox(int x, int y, int sizeX, int sizeY) {
 	ucg.setColor(255, 255, 255);
 
 	ucg.drawBox(x, y, sizeX, sizeY);
-}
-
-void OcsGraphics::drawLongitude(uint16_t lonInt, uint32_t lonAfterDot) {
-	String text = String(lonInt / 100) + " ";
-	if (lonInt % 100 < 10) {
-		text += ("0" + String(lonInt % 100));
-	} else {
-		text += String(lonInt % 100);
-	}
-	if (lonAfterDot >= 10000) {
-		text += ("." + String(lonAfterDot / 10));
-	} else if (lonAfterDot >= 100000) {
-		text += ("." + String(lonAfterDot / 100));
-	} else {
-		text += ("." + String(lonAfterDot));
-	}
-	drawText(text, 85, 37);
-}
-
-void OcsGraphics::drawLatitude(uint16_t latInt, uint32_t latAfterDot) {
-	String text = String(latInt / 100) + " ";
-	if (latInt % 100 < 10) {
-		text += ("0" + String(latInt % 100));
-	} else {
-		text += String(latInt % 100);
-	}
-	if (latAfterDot >= 10000) {
-		text += ("." + String(latAfterDot / 10));
-	} else if (latAfterDot >= 100000) {
-		text += ("." + String(latAfterDot / 100));
-	} else {
-		text += ("." + String(latAfterDot));
-	}
-	drawText(text, 85, 69);
-}
-
-void OcsGraphics::drawSatellitesCount(uint16_t satellitesCount) {
-	drawText(String(satellitesCount), 85, 101);
 }
 
 void OcsGraphics::drawPressureCanSat(uint16_t pressure) {
