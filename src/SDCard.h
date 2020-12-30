@@ -7,7 +7,7 @@
 class SDCard
 {
   public:
-	String getFilename();
+	  String getFilename();
 };
 
 #endif /* _SDCARD_HH */

@@ -6,17 +6,17 @@
 
 class OcsStorage
 {
-  public:
-	OcsStorage(OcsGraphics& ocsDesignIn);
+public:
+	OcsStorage(OcsGraphics &ocsDesignIn);
 
-	// define our own struct data type with variables
 	typedef struct
 	{
+		uint8_t messageType;
 		uint16_t messageId;
 		float temperatureCanSat;
 		float temperatureExternal;
-		double ambientTemp;
-		double objectTemp;
+		float ambientTemp;
+		float objectTemp;
 		float pressureCanSat;
 		float pressureExternal;
 		float humidityCanSat;
@@ -26,6 +26,12 @@ class OcsStorage
 		float altitudeExternal;
 		uint16_t co2SCD30;
 		uint16_t co2CCS811;
+	} message1;
+
+	typedef struct
+	{
+		uint8_t messageType;
+		uint16_t messageId;
 		uint16_t tvoc;
 		float o2Concentration;
 		uint16_t latInt;
@@ -37,6 +43,12 @@ class OcsStorage
 		float temperatureMPU;
 		float temperatureSCD30;
 		float humiditySCD30;
+	} message2;
+
+	typedef struct
+	{
+		uint8_t messageType;
+		uint16_t messageId;
 		float accelerationX;
 		float accelerationY;
 		float accelerationZ;
@@ -46,6 +58,12 @@ class OcsStorage
 		float magnetometerX;
 		float magnetometerY;
 		float magnetometerZ;
+	} message3;
+
+	typedef struct
+	{
+		uint8_t messageType;
+		uint16_t messageId;
 		float a;
 		float b;
 		float c;
@@ -54,28 +72,23 @@ class OcsStorage
 		float f;
 		float g;
 		float h;
-		float i;
-		float j;
-		float k;
-		float l;
 		float r;
+		float i;
 		float s;
+		float j;
 		float t;
-		float u;
-		float v;
-		float w;
-	} message;
+	} message4;
 
-	void Update(message income, uint8_t screenNum);
+	void Update(message1 income, uint8_t screenNum);
+	void Update(message2 income, uint8_t screenNum);
+	void Update(message3 income, uint8_t screenNum);
+	void Update(message4 income, uint8_t screenNum);
 
-  private:
+private:
 	bool isInitalize;
 	bool isTransition;
 
 	OcsGraphics ocsDesign;
-
-	message actualData {};
 };
 
 #endif /* _OCSGRAPHICS_HH */
-
