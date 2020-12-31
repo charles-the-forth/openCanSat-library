@@ -7,7 +7,7 @@
 
 class OcsGraphics
 {
-  public:
+public:
 	OcsGraphics(Ucglib_ST7735_18x128x160_HWSPI &ucgIn);
 
 	void drawHomescreen();
@@ -28,7 +28,7 @@ class OcsGraphics
 
 	void drawHumidityCanSat(float humidity);
 
-  private:
+private:
 	Ucglib_ST7735_18x128x160_HWSPI &ucg;
 
 	uint8_t fontR = 255;
